@@ -1,0 +1,23 @@
+<h1>List of items:</h1>
+<table border="solid 1">
+  <th>
+    Name
+  </th>
+  <th>
+    Price
+  </th>
+
+  <% @items.each do |item| %>
+
+      <tr>
+        <td>
+          <%= item.name %>
+        </td>
+
+        <td>
+          <%= item.price %>
+        </td>
+      </tr>
+  <% end %>
+
+</table>

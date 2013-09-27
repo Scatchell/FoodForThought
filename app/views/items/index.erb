@@ -1,34 +1,7 @@
 <h1>Administrator list of items:</h1>
 
-<table border="solid 1">
-  <th>
-    Name
-  </th>
-  <th>
-    Price
-  </th>
-  <th>
-    Availability
-  </th>
-  <%= form_tag mark_availability_items_path, method: :put do %>
-      <% @items.each do |item| %>
-          <tr>
-            <td>
-              <%= item.name %>
-            </td>
+<%= form_tag mark_availability_items_path, method: :put do %>
+<%= render :partial => 'items_list',:locals => {:items => @items } %>
+<%= submit_tag 'Update selected' %>
 
-            <td>
-              <%= item.price %>
-            </td>
-
-            <td>
-              <%= check_box_tag 'items[]', item.id, item.available -%>
-            </td>
-          </tr>
-
-      <% end %>
-
-      </table>
-
-      <%= submit_tag 'Update selected' %>
-  <% end %>
+<% end  %>

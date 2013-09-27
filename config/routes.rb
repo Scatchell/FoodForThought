@@ -11,16 +11,16 @@ FoodForThought::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :order do
-    resources :items do
-      collection do
-        put 'mark_availability'
-      end
+  resources :items  do
+    collection do
+      put 'mark_availability'
     end
   end
-  # Example resource route with options:
+
+  resources :order do
+    resources :items
+  end
   #   resources :products do
   #     member do
   #       get 'short'

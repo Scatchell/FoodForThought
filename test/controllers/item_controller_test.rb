@@ -6,10 +6,10 @@ class ItemControllerTest < ActionController::TestCase
     @controller = ItemsController.new
   end
 
-  test 'when item is successfully saved, redirect to view that item' do
+  test 'when item is successfully saved, redirect to view that has all items' do
     post :create, item: {name: 'test_item', price: 1000}
 
-    assert_redirected_to item_path(assigns(:item))
+    assert_redirected_to items_path
   end
 
   test 'when item is successfully saved, its availability should be false' do

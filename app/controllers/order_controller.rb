@@ -2,6 +2,7 @@ class OrderController < ApplicationController
 
   def new
     @order = Order.new
+    @items = Item.all
   end
 
   def show
@@ -11,6 +12,8 @@ class OrderController < ApplicationController
   def create
     @order = Order.new params.require(:order).permit(:name)
 
+    @items = Item.find(params[:items])
+    @order.items = @items
     @order.save
 
     redirect_to @order

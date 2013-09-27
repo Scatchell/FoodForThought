@@ -5,6 +5,10 @@
       <%= f.label :name %><br>
       <%= f.text_field :name %>
     </p>   
+    <p>
+      <%= render :partial =>  'items/items_list', :locals => {:items => @items }%>
+
+    </p>
       <p>
       <%= f.submit %>
     </p>

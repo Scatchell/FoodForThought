@@ -1,0 +1,29 @@
+<table border="solid 1">
+  <th>
+    Name
+  </th>
+  <th>
+    Price
+  </th>
+  <th>
+    Availability
+  </th>
+
+  <% items.each do |item| %>
+      <tr>
+        <td>
+          <%= item.name %>
+        </td>
+
+        <td>
+          <%= item.price %>
+        </td>
+
+        <td>
+          <%= check_box_tag 'items[]', item.id, item.available -%>
+        </td>
+      </tr>
+
+  <% end %>
+
+</table>

@@ -1,3 +1,5 @@
-<h1>Order created</h1>
+<h1>Order created for <%= @order.name %> <br/>
 
-Name: <%= @order.name %> <br/>
+
+
+<%= render :partial =>  'items/items_list',:locals => {:items => @order.items } %>

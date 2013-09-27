@@ -13,12 +13,13 @@ FoodForThought::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :items do
-    collection do
-      put 'mark_availability'
+  resources :order do
+    resources :items do
+      collection do
+        put 'mark_availability'
+      end
     end
   end
-
   # Example resource route with options:
   #   resources :products do
   #     member do

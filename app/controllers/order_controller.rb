@@ -2,7 +2,7 @@ class OrderController < ApplicationController
 
   def new
     @order = Order.new
-    @items = Item.all
+    @items = Item.where(available: true)
   end
 
   def show

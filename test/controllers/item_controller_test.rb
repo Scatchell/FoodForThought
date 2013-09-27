@@ -38,6 +38,7 @@ class ItemControllerTest < ActionController::TestCase
     assert_equal true, items(:two).available
   end
 
+
   #test 'should update collection' do
   #  put :update, :id => collections(:one), :collection => {:name => 'MyString2'}
   #  assert_equal "MyString2", collections(:one).name

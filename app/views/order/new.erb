@@ -6,7 +6,7 @@
       <%= f.text_field :name %>
     </p>   
     <p>
-      <%= render :partial =>  'items/items_list', :locals => {:items => @items }%>
+      <%= render :partial =>  'items/items_list', :locals => {:items => @items , :show_availability => false }%>
 
     </p>
       <p>

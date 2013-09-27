@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  price: 
+  price: 1000
+  available: true
 
 two:
-  name: MyString
-  price: 
+  name: MyString2
+  price: 2000
+  available: false

@@ -7,4 +7,6 @@ class Order < ActiveRecord::Base
        item.available?
     end
   end
+
+
 end

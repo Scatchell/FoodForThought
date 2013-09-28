@@ -18,4 +18,11 @@ class OrderController < ApplicationController
 
     redirect_to @order
   end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+
+    redirect_to new_order_path
+  end
 end

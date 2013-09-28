@@ -3,4 +3,6 @@
 <h4>Items that were selected for this order</h4>
 
 <%= render :partial =>  'items/items_list',:locals => {:items => @order.items , :show_availability => AvailabilityTypes::NONE } %>
-<% #todo remove this order %>
+
+<h4>Is something not right?</h4>
+<%= link_to 'Remove this order and try again', @post, method: :delete, data: { confirm: 'Are you sure?' } %>

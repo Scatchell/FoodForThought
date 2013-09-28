@@ -2,4 +2,4 @@
 
 
 
-<%= render :partial =>  'items/items_list',:locals => {:items => @order.items , :show_availability => false  } %>
+<%= render :partial =>  'items/items_list',:locals => {:items => @order.items , :show_availability => AvailabilityTypes::NONE } %>

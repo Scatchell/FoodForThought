@@ -36,6 +36,8 @@ class ItemsController < ApplicationController
       end
     end
 
+    flash[:notice] = 'Items successfully updated!'
+
     redirect_to items_path
   end
 

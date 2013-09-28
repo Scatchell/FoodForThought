@@ -1,7 +1,11 @@
 <h1>Administrator list of items:</h1>
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+<% end -%>
+<div id="main_content">
+  <%= form_tag mark_availability_items_path, method: :put do %>
+      <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypes::AVAILABILITY} %>
+      <%= submit_tag 'Update selected' %>
+  <% end %>
 
-<%= form_tag mark_availability_items_path, method: :put do %>
-<%= render :partial => 'items_list',:locals => {:items => @items , :show_availability => true } %>
-<%= submit_tag 'Update selected' %>
-
-<% end  %>
+</div>

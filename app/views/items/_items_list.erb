@@ -5,9 +5,11 @@
   <th>
     Price
   </th>
+  <% unless show_availability == AvailabilityTypes::NONE %>
       <th>
-        <%= show_availability ? "Availability" : "Select choice"%>
+        <%= show_availability == AvailabilityTypes::AVAILABILITY ? "Availability" : "Select choice" %>
       </th>
+  <% end %>
 
   <% items.each do |item| %>
       <tr>
@@ -18,10 +20,11 @@
         <td>
           <%= item.price %>
         </td>
+        <% unless show_availability == AvailabilityTypes::NONE %>
             <td>
-
-              <%= check_box_tag 'items[]', item.id, show_availability ? item.available : false -%>
+              <%= check_box_tag 'items[]', item.id, show_availability == AvailabilityTypes::AVAILABILITY ? item.available : false -%>
             </td>
+        <% end %>
       </tr>
 
   <% end %>

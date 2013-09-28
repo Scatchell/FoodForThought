@@ -14,3 +14,18 @@
 table th {
     padding: 5px;
 }
+
+.notice {
+    color: green;
+    margin-bottom: 10px;
+    padding: 6px;
+
+    border: green dashed;
+    float: left;
+    clear: right;
+}
+
+#main_content {
+    float: left;
+    clear: both;
+}

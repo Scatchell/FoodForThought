@@ -4,7 +4,8 @@
      <p>
       <%= f.label :name %><br>
       <%= f.text_field :name %>
-    </p>   
+    </p>
+    <h4>Items available for order:</h4>
     <p>
       <%= render :partial =>  'items/items_list', :locals => {:items => @items , :show_availability => AvailabilityTypes::SELECT }%>
 

@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   http_basic_authenticate_with name: "allinall", password: "twcollins"
-  
+
   def new
-    #form
+    @item = Item.new
   end
 
   def create

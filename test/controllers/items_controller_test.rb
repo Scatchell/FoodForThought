@@ -3,6 +3,7 @@ require 'test_helper'
 class ItemsControllerTest < ActionController::TestCase
 
   include AuthHelper
+
   def setup
     @controller = ItemsController.new
     http_login
@@ -41,8 +42,13 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
 
-  #test 'should update collection' do
-  #  put :update, :id => collections(:one), :collection => {:name => 'MyString2'}
-  #  assert_equal "MyString2", collections(:one).name
-  #end
+  test 'should delete an item' do
+    assert_difference('Item.count', -1) do
+      delete :destroy, id: items(:one).id
+    end
+
+    assert_not_nil flash[:notice]
+
+    assert_redirected_to items_path
+  end
 end

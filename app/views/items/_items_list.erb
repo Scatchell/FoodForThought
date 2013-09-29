@@ -10,6 +10,11 @@
         <%= show_availability == AvailabilityTypes::AVAILABILITY ? 'Availability' : 'Select your choice' %>
       </th>
   <% end %>
+  <% if show_availability == AvailabilityTypes::AVAILABILITY %>
+      <th>
+        Remove item
+      </th>
+  <% end %>
 
   <% items.each do |item| %>
       <tr>
@@ -24,6 +29,11 @@
             <td>
               <label> <%= show_availability == AvailabilityTypes::AVAILABILITY ? 'Available?' : 'I want' %>
                 <%= check_box_tag 'items[]', item.id, show_availability == AvailabilityTypes::AVAILABILITY ? item.available : false -%></label>
+            </td>
+        <% end %>
+        <% if show_availability == AvailabilityTypes::AVAILABILITY %>
+            <td>
+              <%= link_to 'Delete item', item, method: :delete, data: {confirm: 'Are you sure you want to permanently remove this item?'} %>
             </td>
         <% end %>
       </tr>

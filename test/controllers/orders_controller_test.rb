@@ -15,4 +15,19 @@ class OrdersControllerTest < ActionController::TestCase
     assert_equal assigns(:orders).size, 2
   end
 
+  test 'should clear all orders when admin clicks delete all' do
+    delete :destroy_all
+
+    assert_equal Order.count, 0
+
+    items = Item.all
+
+    items.each do |item|
+      assert_equal false, item.available
+    end
+
+    assert_redirected_to items_path
+
+    assert_not_nil flash[:notice]
+  end
 end

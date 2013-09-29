@@ -7,7 +7,7 @@
   </th>
   <% unless show_availability == AvailabilityTypes::NONE %>
       <th>
-        <%= show_availability == AvailabilityTypes::AVAILABILITY ? "Availability" : "Select choice" %>
+        <%= show_availability == AvailabilityTypes::AVAILABILITY ? 'Availability' : 'Select your choice' %>
       </th>
   <% end %>
 
@@ -22,7 +22,8 @@
         </td>
         <% unless show_availability == AvailabilityTypes::NONE %>
             <td>
-              <%= check_box_tag 'items[]', item.id, show_availability == AvailabilityTypes::AVAILABILITY ? item.available : false -%>
+              <label> <%= show_availability == AvailabilityTypes::AVAILABILITY ? 'Available?' : 'I want' %>
+                <%= check_box_tag 'items[]', item.id, show_availability == AvailabilityTypes::AVAILABILITY ? item.available : false -%></label>
             </td>
         <% end %>
       </tr>

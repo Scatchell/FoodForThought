@@ -21,6 +21,7 @@ FoodForThought::Application.routes.draw do
   resources :orders do
     collection do
       get 'display_all'
+      delete 'destroy_all'
     end
     resources :items
   end

@@ -2,13 +2,19 @@
 <% flash.each do |name, msg| -%>
     <%= content_tag :div, msg, class: name %>
 <% end -%>
-<div id="items_list">
-  <%= form_tag mark_availability_items_path, method: :put do %>
+<%= form_tag mark_availability_items_path, method: :put do %>
+    <div id="items_list">
       <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypes::AVAILABILITY} %>
+    </div>
+    <div class="submit_button">
       <%= submit_tag 'Update selected' %>
-  <% end %>
+    </div>
+<% end %>
 
+<div class="footer">
   <br/>
   <%= link_to 'Add new item to the menu', new_item_path %>
-
+  <br/>
+  <%= link_to 'View all current orders', display_all_orders_path %>
 </div>
+

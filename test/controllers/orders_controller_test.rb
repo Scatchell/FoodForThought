@@ -9,4 +9,10 @@ class OrdersControllerTest < ActionController::TestCase
     assert_redirected_to new_order_path
   end
 
+  test 'should display all orders' do
+    get :display_all
+
+    assert_equal assigns(:orders).size, 2
+  end
+
 end

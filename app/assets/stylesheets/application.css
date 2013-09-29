@@ -17,7 +17,6 @@ table th {
 
 .notice {
     color: blue;
-    margin-bottom: 10px;
     padding: 6px;
 
     border: green dashed;
@@ -25,7 +24,8 @@ table th {
     clear: right;
 }
 
-#main_content {
+#items_list {
+    margin-top: 10px;
     float: left;
     clear: both;
 }

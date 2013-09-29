@@ -27,6 +27,6 @@ class OrdersController < ApplicationController
   end
 
   def display_all
-
+    @orders = Order.all
   end
 end

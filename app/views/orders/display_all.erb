@@ -1,0 +1,10 @@
+<h1>All currently entered orders:</h1>
+<% @orders.each do |order| %>
+
+    <div id="items_list">
+      <h3> Order for <%= order.name %>: </h3>
+      <%= render partial: 'items/items_list', locals: {items: order.items, show_availability: AvailabilityTypes::NONE} %>
+      <br/>
+      Total cost of this order: <%= number_with_delimiter(order.total_price) %>
+    </div>
+<% end %>

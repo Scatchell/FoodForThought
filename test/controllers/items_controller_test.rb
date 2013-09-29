@@ -1,9 +1,11 @@
 require 'test_helper'
 
-class ItemControllerTest < ActionController::TestCase
+class ItemsControllerTest < ActionController::TestCase
 
+  include AuthHelper
   def setup
     @controller = ItemsController.new
+    http_login
   end
 
   test 'when item is successfully saved, redirect to view that has all items' do
@@ -32,7 +34,7 @@ class ItemControllerTest < ActionController::TestCase
   end
 
   test 'when all items are selected, they should all be set to available' do
-    put :mark_availability, items: [%w(980190962, 298486374)]
+    put :mark_availability, items: %w(980190962, 298486374)
 
     assert_equal true, items(:one).available
     assert_equal true, items(:two).available

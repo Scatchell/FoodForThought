@@ -1,4 +1,4 @@
-class OrderController < ApplicationController
+class OrdersController < ApplicationController
 
   def new
     @order = Order.new
@@ -26,5 +26,7 @@ class OrderController < ApplicationController
     redirect_to new_order_path
   end
 
-  
+  def display_all
+
+  end
 end

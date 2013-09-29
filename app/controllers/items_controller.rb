@@ -10,7 +10,11 @@ class ItemsController < ApplicationController
 
     @item.available = false
 
-    @item.save
+    if @item.save
+      flash[:notice] = 'Item successfully added!'
+    else
+      flash[:error] = 'Item failed to save, please try again'
+    end
 
     redirect_to items_path
   end

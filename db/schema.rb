@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130927100820) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "items", force: true do |t|
     t.string   "name"
     t.integer  "price"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20130927100820) do
     t.integer "item_id",  null: false
   end
 
-  add_index "items_orders", ["item_id", "order_id"], name: "index_items_orders_on_item_id_and_order_id", unique: true
+  add_index "items_orders", ["item_id", "order_id"], name: "index_items_orders_on_item_id_and_order_id", unique: true, using: :btree
 
   create_table "orders", force: true do |t|
     t.string   "name"

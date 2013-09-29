@@ -4,7 +4,7 @@
 <% end -%>
 <%= form_tag mark_availability_items_path, method: :put do %>
     <div id="items_list">
-      <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypes::AVAILABILITY} %>
+      <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::AVAILABILITY} %>
     </div>
     <div class="submit_button">
       <%= submit_tag 'Update selected' %>

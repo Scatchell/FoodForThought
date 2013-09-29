@@ -7,7 +7,7 @@
     </p>
     <h4>Items available for order:</h4>
     <div id="items_list">
-      <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypes::SELECT} %>
+      <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::SELECT} %>
     </div>
       <p>
     <div class="submit_button">

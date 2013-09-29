@@ -2,7 +2,7 @@
 
 <h4>Items that were selected for this order</h4>
 
-<%= render :partial =>  'items/items_list',:locals => {:items => @order.items , :show_availability => AvailabilityTypes::NONE } %>
+<%= render :partial =>  'items/items_list',:locals => {:items => @order.items , :show_availability => AvailabilityTypeHelper::NONE } %>
 <br/>
 Total price for this order: <%= number_with_delimiter(@order.total_price) %> UGX
 

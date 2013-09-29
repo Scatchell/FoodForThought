@@ -1,5 +1,5 @@
 module ItemHelper
   def display_type
-    show_availability == AvailabilityTypes::AVAILABILITY
+    show_availability == AvailabilityTypeHelper::AVAILABILITY
   end
 end

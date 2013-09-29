@@ -5,12 +5,12 @@
   <th>
     Price
   </th>
-  <% unless show_availability == AvailabilityTypes::NONE %>
+  <% unless show_availability == AvailabilityTypeHelper::NONE %>
       <th>
-        <%= show_availability == AvailabilityTypes::AVAILABILITY ? 'Availability' : 'Select your choice' %>
+        <%= show_availability == AvailabilityTypeHelper::AVAILABILITY ? 'Availability' : 'Select your choice' %>
       </th>
   <% end %>
-  <% if show_availability == AvailabilityTypes::AVAILABILITY %>
+  <% if show_availability == AvailabilityTypeHelper::AVAILABILITY %>
       <th>
         Remove item
       </th>
@@ -25,13 +25,13 @@
         <td>
           <%= item.price %>
         </td>
-        <% unless show_availability == AvailabilityTypes::NONE %>
+        <% unless show_availability == AvailabilityTypeHelper::NONE %>
             <td>
-              <label> <%= show_availability == AvailabilityTypes::AVAILABILITY ? 'Available?' : 'I want' %>
-                <%= check_box_tag 'items[]', item.id, show_availability == AvailabilityTypes::AVAILABILITY ? item.available : false -%></label>
+              <label> <%= show_availability == AvailabilityTypeHelper::AVAILABILITY ? 'Available?' : 'I want' %>
+                <%= check_box_tag 'items[]', item.id, show_availability == AvailabilityTypeHelper::AVAILABILITY ? item.available : false -%></label>
             </td>
         <% end %>
-        <% if show_availability == AvailabilityTypes::AVAILABILITY %>
+        <% if show_availability == AvailabilityTypeHelper::AVAILABILITY %>
             <td>
               <%= link_to 'Delete item', item, method: :delete, data: {confirm: 'Are you sure you want to permanently remove this item?'} %>
             </td>

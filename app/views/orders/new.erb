@@ -1,23 +1,22 @@
 <h1>Create Your Order</h1>
+<div class="col-lg-4">
 
-<%= form_for @order, url: order_path(@order) do |f| %>
-     <p>
-      <%= f.label :name %><br/>
-      <%= f.text_field :name %>
+  <!--<div class="well"></div>-->
+  <%= form_for @order, url: order_path(@order), :class => 'bs-example form-horizontal' do |f| %>
+      <div class="form-group nav nav-tabs">
+        <%= f.label :name, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10" style="margin-bottom: 15px">
+              <%= f.text_field :name, :class => :'input-sm' %>
+        </div>
+      </div>
+      <div class="form-group nav nav-tabs">
+        <h4>Items available for order:</h4>
+
+        <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::SELECT} %>
+      </div>
+        <p>
+
+      <%= f.submit 'Create Order', class: 'btn-default' %>
     </p>
-    <h4>Items available for order:</h4>
-    <div id="items_list">
-      <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::SELECT} %>
-    </div>
-      <p>
-    <div class="submit_button">
-          <%= f.submit %>
-    </div>
-      </p>
-<% end %>
-
-<div class="footer">
-  If you are an admin:
-  <ul><%= link_to 'Select/edit items for today', items_path %> <br/></ul>
-  <ul><%= link_to 'View all orders made today so far', display_all_orders_path %></ul>
+  <% end %>
 </div>

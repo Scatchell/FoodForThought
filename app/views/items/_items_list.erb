@@ -1,4 +1,5 @@
-<table border="solid 1">
+<table class="table table-bordered table-striped table-hover">
+  <thead>
   <th>
     Name
   </th>
@@ -15,7 +16,9 @@
         Remove item
       </th>
   <% end %>
+  </thead>
 
+  <tbody>
   <% items.each do |item| %>
       <tr>
         <td>
@@ -37,7 +40,7 @@
             </td>
         <% end %>
       </tr>
-
   <% end %>
+  </tbody>
 
 </table>

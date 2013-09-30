@@ -1,22 +1,20 @@
-<h1>Create Your Order</h1>
 <div class="col-lg-4">
-
-  <!--<div class="well"></div>-->
-  <%= form_for @order, url: order_path(@order), :class => 'bs-example form-horizontal' do |f| %>
-      <div class="form-group nav nav-tabs">
-        <%= f.label :name, class: 'col-lg-2 control-label' %>
-        <div class="col-lg-10" style="margin-bottom: 15px">
-              <%= f.text_field :name, :class => :'input-sm' %>
-        </div>
-      </div>
-      <div class="form-group nav nav-tabs">
-        <h4>Items available for order:</h4>
-
-        <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::SELECT} %>
-      </div>
-        <p>
-
-      <%= f.submit 'Create Order', class: 'btn-default' %>
-    </p>
-  <% end %>
+  <div class="well">
+    <%= form_for @order, url: order_path(@order), :class => 'bs-example form-horizontal' do |f| %>
+        <fieldset>
+          <legend>Create Your Order</legend>
+          <div class="form-group">
+            <%= f.label :name, class: 'col-lg-2 control-label' %>
+            <div class="col-lg-10" style="margin-bottom: 15px">
+                  <%= f.text_field :name, :class => 'input-sm' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="item-list">Item List:</label>
+            <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::SELECT} %>
+          </div>
+              <%= f.submit 'Create Order', class: 'btn btn-success' %>
+        </fieldset>
+    <% end %>
+  </div>
 </div>

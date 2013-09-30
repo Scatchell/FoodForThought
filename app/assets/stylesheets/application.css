@@ -22,3 +22,8 @@
     float: left;
     clear: both;
 }
+
+#item-list th, td{
+    margin: 10px;
+    text-align: center;
+}

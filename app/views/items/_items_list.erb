@@ -1,4 +1,4 @@
-<table class="table table-bordered table-striped table-hover">
+<table class="table table-bordered table-striped table-hover" id="item-list">
   <thead>
   <th>
     Name
@@ -36,7 +36,7 @@
         <% end %>
         <% if show_availability == AvailabilityTypeHelper::AVAILABILITY %>
             <td>
-              <%= link_to 'Delete item', item, method: :delete, data: {confirm: 'Are you sure you want to permanently remove this item?'} %>
+              <%= link_to 'Delete item', item, method: :delete, data: {confirm: 'Are you sure you want to permanently remove this item?'}, class: 'link' %>
             </td>
         <% end %>
       </tr>

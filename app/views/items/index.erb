@@ -3,7 +3,7 @@
 </div>
 
 <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
+    <%= content_tag :div, msg, class: display_class_for(name) %>
 <% end -%>
 
 <div class="row">

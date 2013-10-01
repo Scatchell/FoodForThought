@@ -15,7 +15,9 @@ class OrdersController < ApplicationController
 
     @items = Item.find(params[:items])
     @order.items = @items
-    @order.save
+    if @order.save
+      flash[:auth] = @order.id
+    end
 
     redirect_to @order
   end

@@ -7,7 +7,7 @@ class OrderTest < ActiveSupport::TestCase
 
     order.items = [items(:one), items(:two)]
 
-    assert_equal order.total_price, 3000
+    assert_equal 2000,order.total_price
   end
 
 end

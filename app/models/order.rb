@@ -8,6 +8,6 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    items.to_a.max.price
+    items.to_a.map{ |item| item.price }.max
   end
 end

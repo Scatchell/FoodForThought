@@ -11,40 +11,7 @@
  *= require_self
  *= require_tree .
  */
-table th, tr td {
-    padding: 5px;
-    text-align: center;
-}
 
-.submit_button {
-    margin-top: 10px;
-    float: left;
-    clear: both;
-}
-
-.notice {
-    color: blue;
-    padding: 6px;
-
-    border: green dashed;
-    float: left;
-    clear: right;
-}
-
-.error {
-    color: darkred;
-    padding: 6px;
-
-    border: red dashed;
-    float: left;
-    clear: right;
-}
-
-#items_list {
-    margin-top: 10px;
-    float: left;
-    clear: both;
-}
 
 .footer {
     margin-top: 10px;
@@ -55,6 +22,7 @@ table th, tr td {
     clear: both;
 }
 
-#deletion {
-    border: dotted red;
+#item-list th, td{
+    margin: 10px;
+    text-align: center;
 }

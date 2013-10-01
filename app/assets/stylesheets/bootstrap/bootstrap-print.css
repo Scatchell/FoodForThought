@@ -1,0 +1,9 @@
+.col-lg-4 {
+    width: 300px;
+    float: left;
+    position: relative;
+}
+
+.btn {
+    display: none;
+}

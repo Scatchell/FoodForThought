@@ -1,20 +1,28 @@
-<h1>Administrator list of items:</h1>
-<% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
-<% end -%>
-<%= form_tag mark_availability_items_path, method: :put do %>
-    <div id="items_list">
-      <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::AVAILABILITY} %>
-    </div>
-    <div class="submit_button">
-      <%= submit_tag 'Update selected' %>
-    </div>
-<% end %>
-
-<div class="footer">
-  <br/>
-  <%= link_to 'Add new item to the menu', new_item_path %>
-  <br/>
-  <%= link_to 'View all current orders', display_all_orders_path %>
+<div class="col-lg-12">
+  <h1>Administrator list of items:</h1>
 </div>
 
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: display_class_for(name) %>
+<% end -%>
+
+<div class="row">
+
+  <div class="col-lg-6">
+    <%= form_tag mark_availability_items_path, method: :put do %>
+        <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::AVAILABILITY} %>
+        <%= submit_tag 'Update selected', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Other Controls</h1>
+  </div>
+  <div class="col-lg-6">
+    <div class="bs-example">
+      <input value='Add New Item' class='btn btn-success' type='button' onclick="location.href='<%= new_item_path %>'">
+      <input value='View all current orders' class='btn btn-default' type='button' onclick="location.href='<%= display_all_orders_path %>'">
+    </div>
+  </div>
+</div>

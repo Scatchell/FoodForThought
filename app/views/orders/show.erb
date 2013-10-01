@@ -1,10 +1,19 @@
 <h1>Order created for <%= @order.name %> <br/></h1>
 
 <h4>Items that were selected for this order</h4>
-
-<%= render :partial =>  'items/items_list',:locals => {:items => @order.items , :show_availability => AvailabilityTypeHelper::NONE } %>
-<br/>
-Total price for this order: <%= number_with_delimiter(@order.total_price) %> UGX
-
-<h4>Is something not right?</h4>
-<ul><%= link_to 'Remove this order and try again', @post, method: :delete, data: { confirm: 'Are you sure you want to delete this order and make a new one?' } %></ul>
+<div class="row">
+  <div class="col-lg-4">
+    <%= render :partial => 'items/items_list', :locals => {:items => @order.items, :show_availability => AvailabilityTypeHelper::NONE} %>
+    <div class="alert alert-info" style="text-align: center">Total price for this
+      order: <%= number_with_delimiter(@order.total_price) %> UGX
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <div class="well">
+      <h4>Is something not right?</h4>
+      <%= button_to 'Remove this order and try again', @post, method: :delete, data: {confirm: 'Are you sure you want to delete this order and make a new one?'}, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

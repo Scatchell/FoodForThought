@@ -4,11 +4,12 @@
         <fieldset>
           <legend>Create Your Order</legend>
           <div class="form-group">
-            <%= f.label :name, class: 'col-lg-2 control-label' %>
+            <%= f.label :name, class: 'col-lg-2 control-label', for: 'order_name' %>
             <div class="col-lg-10" style="margin-bottom: 15px">
-                  <%= f.text_field :name, :class => 'input-sm' %>
+              <%= f.text_field :name, :class => 'form-control', placeholder: 'Name for Order' %>
             </div>
           </div>
+
           <div class="form-group">
             <label class="control-label" for="item-list">Item List:</label>
             <%= render :partial => 'items/items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::SELECT} %>

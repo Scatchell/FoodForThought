@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     @items = Item.find(params[:items])
     @order.items = @items
     if @order.save
-      flash[:auth] = @order.id
+      session[:auth] = @order.id
     end
 
     redirect_to @order
@@ -24,7 +24,12 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
-    @order.destroy
+
+    if session[:auth] == @order.id
+      @order.destroy
+    else
+      flash[:error] = 'You may not delete this order'
+    end
 
     redirect_to new_order_path
   end

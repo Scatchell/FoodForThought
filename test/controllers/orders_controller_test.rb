@@ -8,7 +8,19 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test 'should destroy a post' do
+    session[:auth] = orders(:one).id
+
     assert_difference('Order.count', -1) do
+      delete :destroy, id: orders(:one).id
+    end
+
+    assert_redirected_to new_order_path
+  end
+
+  test 'should not destroy a post if the authentication token doesn\'t exist' do
+    session[:auth] = nil
+
+    assert_difference('Order.count', 0) do
       delete :destroy, id: orders(:one).id
     end
 

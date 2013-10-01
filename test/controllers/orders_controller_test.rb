@@ -30,4 +30,10 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_not_nil flash[:notice]
   end
+
+  test 'should list (only available) orders sorted by price' do
+    get :new
+
+    assert_equal [items(:three),items(:one)], assigns(:items).to_a
+  end
 end

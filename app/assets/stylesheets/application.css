@@ -26,3 +26,7 @@
     margin: 10px;
     text-align: center;
 }
+
+td .align {
+    text-align: left;
+}

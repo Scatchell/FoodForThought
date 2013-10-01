@@ -42,4 +42,5 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_equal [items(:three),items(:one)], assigns(:items).to_a
   end
+
 end

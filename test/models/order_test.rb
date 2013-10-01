@@ -10,4 +10,13 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 2000,order.total_price
   end
 
+
+  test 'should print all items in the order' do
+    order = orders(:one)
+
+    order.items = [items(:one), items(:two)]
+
+    assert_equal "MyString + MyString2", order.items_string
+
+  end
 end

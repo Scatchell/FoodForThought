@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class OrdersControllerTest < ActionController::TestCase
+  include AuthHelper
+
+  def setup
+    http_login
+  end
+
   test 'should destroy a post' do
     assert_difference('Order.count', -1) do
       delete :destroy, id: orders(:one).id

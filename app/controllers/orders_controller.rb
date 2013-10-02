@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
     @items = Item.where(available: true).order('price DESC')
   end
 
+
   def show
     @order = Order.find(params[:id])
   end
@@ -15,11 +16,17 @@ class OrdersController < ApplicationController
 
     @items = Item.find(params[:items])
     @order.items = @items
+
     if @order.save
       session[:auth] = @order.id
+      redirect_to @order
+    else
+      flash[:error] = "Order not saved try again"
+      redirect_to new_order_path
     end
 
-    redirect_to @order
+
+
   end
 
   def destroy
@@ -55,4 +62,5 @@ class OrdersController < ApplicationController
 
     redirect_to items_path
   end
+
 end

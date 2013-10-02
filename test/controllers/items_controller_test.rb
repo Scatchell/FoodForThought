@@ -28,7 +28,7 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
   test 'when 1 items out of 2 are selected, only the selected items should be set to available' do
-    put :mark_availability, items: ['980190962']
+    put :mark_availability, items: [items(:one).id]
 
     assert_equal true, items(:one).available
     assert_equal false, items(:two).available

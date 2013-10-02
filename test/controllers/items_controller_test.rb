@@ -51,4 +51,10 @@ class ItemsControllerTest < ActionController::TestCase
 
     assert_redirected_to items_path
   end
+
+  test 'should list all items ordered by their price descending' do
+    get :index
+
+    assert_equal [items(:three), items(:one), items(:two)], assigns(:items).to_a
+  end
 end

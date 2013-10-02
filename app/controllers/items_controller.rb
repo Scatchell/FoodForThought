@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.all.order('price DESC')
   end
 
   def mark_availability

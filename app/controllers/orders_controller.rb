@@ -3,9 +3,8 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @items = Item.where(available: true).order('price DESC')
+    @items_by_type = Item.where(available: true).order('price DESC').group_by { |e| e.item_type.to_sym }
   end
-
 
   def show
     @order = Order.find(params[:id])
@@ -21,12 +20,9 @@ class OrdersController < ApplicationController
       session[:auth] = @order.id
       redirect_to @order
     else
-      flash[:error] = "Order not saved try again"
+      flash[:error] = 'Order could not be saved - please make sure you entered a name'
       redirect_to new_order_path
     end
-
-
-
   end
 
   def destroy

@@ -49,16 +49,16 @@ class OrdersControllerTest < ActionController::TestCase
     assert_not_nil flash[:notice]
   end
 
-  test 'should list (only available) orders sorted by price' do
-    get :new
-
-    assert_equal [items(:three),items(:one)], assigns(:items).to_a
-  end
-
   test 'should flash error if order is not saved and not redirect to that order' do
     post :create, order: {name: nil}, items: [items(:one).id]
 
     assert_not_nil flash[:error]
     assert_redirected_to new_order_path
+  end
+
+  test 'should get all available items sorted by their item type, and also ordered by their price descending' do
+    get :new
+
+    assert_equal({ :food => [items(:three), items(:one)], :meat => [items(:four)] }, assigns(:items_by_type))
   end
 end

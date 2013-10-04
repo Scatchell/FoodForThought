@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new params.require(:item).permit(:name, :price)
+    @item = Item.new params.require(:item).permit(:name, :price, :item_type)
 
     @item.available = false
 
@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all.order('price DESC')
+    @items = Item.order('price DESC')
   end
 
   def mark_availability

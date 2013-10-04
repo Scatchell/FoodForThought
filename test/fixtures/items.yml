@@ -3,14 +3,23 @@
 one:
   name: MyString
   price: 2000
+  item_type: food
   available: true
 
 two:
   name: MyString2
   price: 1000
+  item_type: food
   available: false
 
 three:
   name: MyString3
   price: 3000
+  item_type: food
+  available: true
+
+four:
+  name: MyString4
+  price: 6000
+  item_type: meat
   available: true

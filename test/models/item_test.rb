@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  #test "sort items into a hash by their type" do
+     #assert_equal
+  #end
 end

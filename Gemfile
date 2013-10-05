@@ -34,6 +34,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :test do
+  gem 'rspec'
+  gem 'selenium-webdriver'
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+end
+
 gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password

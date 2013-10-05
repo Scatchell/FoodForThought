@@ -57,4 +57,10 @@ class ItemsControllerTest < ActionController::TestCase
 
     assert_equal [items(:four), items(:three), items(:one), items(:two)], assigns(:items).to_a
   end
+
+  test 'should get all different possible item types' do
+    get :new
+
+    assert_equal ['Food', 'Meat'], assigns(:possible_item_types)
+  end
 end

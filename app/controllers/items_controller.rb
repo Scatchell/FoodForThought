@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item_possibilities = %w(meat vegetable extra food)
+    @possible_item_types = Item.all_item_types
   end
 
   def create

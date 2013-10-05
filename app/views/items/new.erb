@@ -14,7 +14,7 @@
 
         <div class="form-group">
           <%= f.label :item_type, 'Type', class: 'col-lg-3 control-label' %>
-          <%= f.select :item_type, @item_possibilities, class: 'input-sm', placeholder: 'Type of Item' %>
+          <%= f.select :item_type, @possible_item_types, class: 'input-sm', placeholder: 'Type of Item', include_blank: 'Select one' %>
         </div>
 
         <%= f.submit 'Create Item', class: 'btn btn-success' %>

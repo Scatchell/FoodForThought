@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  include ApplicationHelper
   http_basic_authenticate_with name: "allinall", password: "twcollins"
 
   def new
@@ -12,9 +13,13 @@ class ItemsController < ApplicationController
     @item.available = false
 
     if @item.save
-      flash[:notice] = 'Item successfully added!'
+      flash[:notice] ||= []
+      flash[:notice] << 'Item successfully added!'
     else
-      flash[:error] = 'Item failed to save, please try again'
+      flash[:error] ||= []
+      @item.errors.each do |error, msg|
+        flash[:error] << capitalize_first_letter(error.to_s) + ' ' + msg
+      end
     end
 
     redirect_to items_path
@@ -43,7 +48,8 @@ class ItemsController < ApplicationController
       end
     end
 
-    flash[:notice] = 'Items successfully updated!'
+    flash[:notice] ||= []
+    flash[:notice] << 'Items successfully updated!'
 
     redirect_to items_path
   end
@@ -52,7 +58,8 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.destroy
 
-    flash[:notice] = 'Item has been successfully removed'
+    flash[:notice] ||= []
+    flash[:notice] << 'Item has been successfully removed'
 
     redirect_to items_path
   end

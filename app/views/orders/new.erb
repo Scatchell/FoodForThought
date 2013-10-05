@@ -1,7 +1,5 @@
 <div class="col-lg-5">
-  <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: display_class_for(name) %>
-  <% end -%>
+  <%= render :partial => 'layouts/display_flash', :locals => {:flash => flash} %>
 
   <div class="well">
     <%= form_for @order, url: order_path(@order), :class => 'form-horizontal' do |f| %>

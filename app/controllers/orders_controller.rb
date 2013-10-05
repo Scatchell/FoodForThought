@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  include ApplicationHelper
+
   http_basic_authenticate_with name: "allinall", password: "twcollins", only: [:display_all, :destroy_all]
 
   def new
@@ -13,15 +15,24 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new params.require(:order).permit(:name)
 
-    @items = Item.find(params[:items])
-    @order.items = @items
-
-    if @order.save
-      session[:auth] = @order.id
-      redirect_to @order
-    else
-      flash[:error] = 'Order could not be saved - please make sure you entered a name'
+    if params[:items].nil?
+      flash[:error] ||= []
+      flash[:error] << 'Order not saved - must select at least a single item'
       redirect_to new_order_path
+    else
+      @items = Item.find(params[:items])
+      @order.items = @items
+
+      if @order.save
+        session[:auth] = @order.id
+        redirect_to @order
+      else
+        flash[:error] ||= []
+        @order.errors.each do |error, msg|
+          flash[:error] << capitalize_first_letter(error.to_s) + ' ' + msg
+        end
+        redirect_to new_order_path
+      end
     end
   end
 
@@ -31,7 +42,8 @@ class OrdersController < ApplicationController
     if session[:auth] == @order.id
       @order.destroy
     else
-      flash[:error] = 'You may not delete this order'
+      flash[:error] ||= []
+      flash[:error] << 'You may not delete this order'
     end
 
     redirect_to new_order_path
@@ -53,8 +65,8 @@ class OrdersController < ApplicationController
     @items.each do |item|
       item.update_attributes(available: false)
     end
-
-    flash[:notice] = 'All orders have been removed! Select the items below that you would like to be available on the next day'
+    flash[:notice] ||= []
+    flash[:notice] << 'All orders have been removed! Select the items below that you would like to be available on the next day'
 
     redirect_to items_path
   end

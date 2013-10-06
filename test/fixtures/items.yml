@@ -1,25 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  name: item_one
   price: 2000
   item_type: food
   available: true
 
 two:
-  name: MyString2
+  name: item_two
   price: 1000
   item_type: food
   available: false
 
 three:
-  name: MyString3
+  name: item_three
   price: 3000
   item_type: food
   available: true
 
 four:
-  name: MyString4
+  name: item_four
   price: 6000
   item_type: meat
   available: true

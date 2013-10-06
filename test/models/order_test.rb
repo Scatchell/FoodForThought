@@ -16,7 +16,7 @@ class OrderTest < ActiveSupport::TestCase
 
     order.items = [items(:one), items(:two)]
 
-    assert_equal "MyString + MyString2", order.items_string
+    assert_equal "#{items(:one).name} + #{items(:two).name}", order.items_string
 
   end
 end

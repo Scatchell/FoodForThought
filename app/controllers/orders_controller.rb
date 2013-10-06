@@ -57,18 +57,23 @@ class OrdersController < ApplicationController
   def destroy_all
     @orders = Order.all
     @orders.each do |order|
+      OrderHistory.create!({name: order.name, items: order.items})
       order.destroy
     end
 
+    reset_all_items_to_unavailable()
+    flash[:notice] ||= []
+    flash[:notice] << 'All orders have been removed! Select the items below that you would like to be available on the next day'
+
+    redirect_to items_path
+  end
+
+  def reset_all_items_to_unavailable
     @items = Item.all
 
     @items.each do |item|
       item.update_attributes(available: false)
     end
-    flash[:notice] ||= []
-    flash[:notice] << 'All orders have been removed! Select the items below that you would like to be available on the next day'
-
-    redirect_to items_path
   end
 
 end

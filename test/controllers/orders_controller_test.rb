@@ -7,7 +7,7 @@ class OrdersControllerTest < ActionController::TestCase
     http_login
   end
 
-  test 'should destroy a post' do
+  test 'should destroy an order' do
     session[:auth] = orders(:one).id
 
     assert_difference('Order.count', -1) do
@@ -17,7 +17,7 @@ class OrdersControllerTest < ActionController::TestCase
     assert_redirected_to new_order_path
   end
 
-  test 'should not destroy a post if the authentication token doesn\'t exist' do
+  test 'should not destroy an order if the authentication token doesn\'t exist' do
     session[:auth] = nil
 
     assert_difference('Order.count', 0) do
@@ -34,6 +34,8 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test 'should clear all orders when admin clicks delete all' do
+    assert_equal Order.count, 2
+
     delete :destroy_all
 
     assert_equal Order.count, 0
@@ -47,6 +49,24 @@ class OrdersControllerTest < ActionController::TestCase
     assert_redirected_to items_path
 
     assert_not_nil flash[:notice]
+  end
+
+  test 'should save all orders in order history table when admin deletes all orders' do
+    assert_equal 2, Order.count
+    orders(:one).items = [items(:one),items(:two)]
+    orders(:two).items = [items(:two),items(:three)]
+
+    first_order = orders(:one)
+    second_order = orders(:two)
+
+    assert_equal 0, OrderHistory.count
+
+    delete :destroy_all
+
+    assert_equal 2, OrderHistory.count
+
+    assert_equal([first_order.name, second_order.name], OrderHistory.all.to_a.map {|order| order.name})
+    assert_equal([first_order.items.collect(&:name).sort, second_order.items.collect(&:name).sort], OrderHistory.all.to_a.map {|order| order.items.collect(&:name).sort})
   end
 
   test 'should flash error if order is not saved and not redirect to that order' do

@@ -4,8 +4,8 @@
 <div class="row">
   <div class="col-lg-4">
     <%= render :partial => 'items/items_list', :locals => {:items => @order.items, :show_availability => AvailabilityTypeHelper::NONE} %>
-    <div class="alert alert-info" style="text-align: center">Total price for this
-      order: <%= number_with_delimiter(@order.total_price) %> UGX
+    <div class="alert alert-info" style="text-align: center">(price calculation sometimes inaccurate) Total price for
+      this order: <%= number_with_delimiter(@order.total_price) %> UGX
     </div>
   </div>
 </div>

@@ -12,6 +12,8 @@ class ItemsController < ApplicationController
 
     @item.available = false
 
+    @item.downcase_item_type!
+
     if @item.save
       flash[:notice] ||= []
       flash[:notice] << 'Item successfully added!'
@@ -63,5 +65,4 @@ class ItemsController < ApplicationController
 
     redirect_to items_path
   end
-
 end

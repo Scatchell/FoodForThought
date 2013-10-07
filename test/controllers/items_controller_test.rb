@@ -9,14 +9,18 @@ class ItemsControllerTest < ActionController::TestCase
     http_login
   end
 
-  test 'when item is successfully saved, redirect to view that has all items' do
-    post :create, item: {name: 'test_item', price: 1000}
+  test 'when item is successfully saved, redirect to view that has all items with no errors' do
+    post :create, item: {name: 'test_item', item_type: 'Meat', price: 1000}
+
+    assert_nil flash[:error]
 
     assert_redirected_to items_path
   end
 
   test 'when item is successfully saved, its availability should be false' do
-    post :create, item: {name: 'test_item', price: 1000}
+    post :create, item: {name: 'test_item', item_type: 'Meat', price: 1000}
+
+    assert_nil flash[:error]
 
     assert_equal false, assigns(:item).available
   end
@@ -62,5 +66,11 @@ class ItemsControllerTest < ActionController::TestCase
     get :new
 
     assert_equal ['Food', 'Meat'], assigns(:possible_item_types)
+  end
+
+  test 'saving new item type should be saved in correct format' do
+    post :create, item: {name: 'test_item', item_type: 'Meat', price: 5000}
+
+    assert_equal 'meat', Item.where(name: 'test_item').first.item_type
   end
 end

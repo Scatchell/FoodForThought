@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
-              <li style="margin-right: 100px"> <p class='navbar-text'>Welcome <%= current_user.email %>! <%= link_to 'Sign out?', destroy_user_session_path, method: :delete %></p></li>
+              <li style="margin-right: 100px"> <p class='navbar-text'>Welcome <%= current_user.username %>! <%= link_to 'Sign out?', destroy_user_session_path, method: :delete %></p></li>
           <% else %>
               <li><%= link_to 'Sign in', new_user_session_path %></li>
               <li><a>OR</a></li>

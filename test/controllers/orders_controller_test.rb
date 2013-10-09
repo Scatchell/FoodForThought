@@ -3,7 +3,10 @@ require 'test_helper'
 class OrdersControllerTest < ActionController::TestCase
   include AuthHelper
 
+  include Devise::TestHelpers
+
   def setup
+    sign_in users(:one)
     http_login
   end
 

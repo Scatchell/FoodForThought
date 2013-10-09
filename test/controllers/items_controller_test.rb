@@ -4,8 +4,10 @@ class ItemsControllerTest < ActionController::TestCase
 
   include AuthHelper
 
+  include Devise::TestHelpers
+
   def setup
-    @controller = ItemsController.new
+    sign_in users(:one)
     http_login
   end
 

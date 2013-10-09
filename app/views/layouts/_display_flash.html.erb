@@ -1,9 +1,17 @@
 <% flash.each do |name, msg| -%>
     <% if msg.class == Array %>
-        <% msg.each do |message| %>
-            <%= content_tag :div, message, class: display_class_for(name) %>
-        <% end -%>
+        <% html = '' %>
+        <% if msg.size == 1
+             html = msg.first
+           else %>
+            <% msg.each do |message| %>
+                <% html << content_tag(:li, message) %>
+            <% end -%>
+        <% end %>
+
+        <%= content_tag :div, html, class: display_class_for(name) %>
     <% else -%>
         <%= content_tag :div, msg, class: display_class_for(name) %>
     <% end -%>
 <% end -%>
+

@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   include ApplicationHelper
 
+  before_filter :authenticate_user!
   http_basic_authenticate_with name: "allinall", password: "twcollins", only: [:display_all, :destroy_all]
 
   def new

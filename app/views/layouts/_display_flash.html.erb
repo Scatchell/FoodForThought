@@ -1,5 +1,9 @@
 <% flash.each do |name, msg| -%>
-    <% msg.each do |message| %>
-        <%= content_tag :div, message, class: display_class_for(name) %>
+    <% if msg.class == Array %>
+        <% msg.each do |message| %>
+            <%= content_tag :div, message, class: display_class_for(name) %>
+        <% end -%>
+    <% else -%>
+        <%= content_tag :div, msg, class: display_class_for(name) %>
     <% end -%>
 <% end -%>

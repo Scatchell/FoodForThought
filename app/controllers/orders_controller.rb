@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new params.require(:order).permit(:name)
+    @order = Order.new({name: current_user.username})
 
     if params[:items].nil?
       flash[:error] ||= []

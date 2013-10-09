@@ -8,7 +8,7 @@
           <div class="form-group">
             <%= f.label :name, class: 'col-lg-2 control-label', for: 'order_name' %>
             <div class="col-lg-10" style="margin-bottom: 15px">
-              <%= f.text_field :name, :class => 'form-control', placeholder: 'Name for Order' %>
+              <%= f.text_field :name, :class => 'form-control', value: current_user.username, readonly: 'readonly', placeholder: 'Name for Order' %>
             </div>
           </div>
 

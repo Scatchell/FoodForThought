@@ -6,8 +6,6 @@ Feature: Creating orders
     |name |price |
     |Rice |0     |
     |Beans|3000  |
-    Given the item "Rice" exists with a price of 0
-    And the item "Beans" exists with a price of 3000
     And a valid user exists
     When I sign in
     And I go to the order creation page

@@ -1,5 +1,15 @@
 include Devise::TestHelpers
 
+Given(/^the following items exist:$/) do |table|
+  table.hashes.each do |i|
+    item = Item.new(i)
+    item.item_type='meat'
+    item.available=true
+    item.save!
+    #Item.new(name: item['name'], price: item['price'], created_at: Time.now, updated_at: Time.now, available: true, item_type: 'meat')
+  end
+end
+
 Given(/^the item "([^"]*)" exists with a price of (\d+)/) do |name, price|
   Item.create!(name: name, price: price, created_at: Time.now, updated_at: Time.now, available: true, item_type: 'meat')
 end

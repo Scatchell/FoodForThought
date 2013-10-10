@@ -1,9 +1,22 @@
+@javascript
 Feature: Creating orders
 
-  Scenario: Create a valid order
-    Given the item "Beef" exists with a price of 5000
-    And I sign in with valid credentials
-    And I am on the create an order page
-    When I select the only available item
+  Background:
+    Given the following items exist:
+    |name |price |
+    |Rice |0     |
+    |Beans|3000  |
+    And a valid user exists
+    When I sign in
+    And I go to the order creation page
+    And I select two items on the menu
     And I create the order
-    Then I should see a confirmation page showing the "Beef" item and my username
+
+  Scenario: Create a valid order
+    Then I should see the order I created
+    And the order should exist
+
+  Scenario: Cancel an order
+    And I cancel the order
+    Then I should see the new order page
+    And the order should not exist

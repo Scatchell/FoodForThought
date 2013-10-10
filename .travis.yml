@@ -3,3 +3,5 @@ rvm:
   - 2.0.0
 before_install:
   - createuser food_for_thought -d -s
+script:
+  - DISPLAY=localhost:1.0 xvfb-run bundle exec cucumber  --profile default

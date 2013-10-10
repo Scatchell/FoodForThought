@@ -1,16 +1,14 @@
 include Devise::TestHelpers
 
 Given(/^the item "([^"]*)" exists with a price of (\d+)/) do |name, price|
-  item = Item.create!(name: name, price: price, created_at: Time.now, updated_at: Time.now, available: true, item_type: 'meat')
-
-  item.save
+  Item.create!(name: name, price: price, created_at: Time.now, updated_at: Time.now, available: true, item_type: 'meat')
 end
 
 And(/^I am signed in$/) do
   @username = 'Anthony'
   email = 'ascatche@thoughtworks.com'
   password = 'password'
-  User.new(username: @username, email: email, password: password, password_confirmation: password).save!
+  User.create!(username: @username, email: email, password: password, password_confirmation: password)
 
   visit '/users/sign_in'
   fill_in "user_email", :with => email

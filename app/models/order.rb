@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  validates_presence_of :name
   has_and_belongs_to_many :items
+  belongs_to :user
 
   def available_items
     items.to_a.select do |item|

@@ -1,7 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: order_one
+one: {}
 
-two:
-  name: order_two
+two: {}

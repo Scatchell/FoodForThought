@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
   validates :username, uniqueness: true, if: -> { self.username.present? }
+
+  has_many :orders
 end

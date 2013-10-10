@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new({name: current_user.username})
+    @order = Order.new
+
+    @order.user = current_user
 
     if params[:items].nil?
       flash[:error] ||= []
@@ -58,7 +60,7 @@ class OrdersController < ApplicationController
   def destroy_all
     @orders = Order.all
     @orders.each do |order|
-      OrderHistory.create!({name: order.name, items: order.items})
+      OrderHistory.create!({user: order.user, items: order.items})
       order.destroy
     end
 

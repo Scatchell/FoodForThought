@@ -11,9 +11,8 @@
         <th>Price:</th>
       </tr>
       <% @orders.each do |order| %>
-
           <tr>
-            <td class="text-left"><%= order.name %></td>
+            <td class="text-left"><%= order.user.username %></td>
             <td class="text-left"><%= bold_pluses(order.items_string) %></td>
             <td class="text-left"><%= number_with_delimiter(order.total_price) %></td>
           </tr>

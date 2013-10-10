@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009143748) do
+ActiveRecord::Schema.define(version: 20131010150945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,15 +40,15 @@ ActiveRecord::Schema.define(version: 20131009143748) do
   add_index "items_orders", ["item_id", "order_id"], name: "index_items_orders_on_item_id_and_order_id", unique: true, using: :btree
 
   create_table "order_histories", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "orders", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

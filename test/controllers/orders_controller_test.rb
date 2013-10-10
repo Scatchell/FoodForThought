@@ -7,6 +7,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   def setup
     sign_in users(:one)
+    add_user_to_orders
     http_login
   end
 
@@ -68,20 +69,28 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_equal 2, OrderHistory.count
 
-    assert_equal([first_order.name, second_order.name], OrderHistory.all.to_a.map {|order| order.name})
+    assert_equal([first_order.user.username, second_order.user.username], OrderHistory.all.to_a.map {|order| order.user.username})
     assert_equal([first_order.items.collect(&:name).sort, second_order.items.collect(&:name).sort], OrderHistory.all.to_a.map {|order| order.items.collect(&:name).sort})
-  end
-
-  test 'should flash error if order is not saved and not redirect to that order' do
-    post :create, order: {name: nil}, items: [items(:one).id]
-
-    assert_not_nil flash[:error]
-    assert_redirected_to new_order_path
   end
 
   test 'should get all available items sorted by their item type, and also ordered by their price descending' do
     get :new
 
     assert_equal({ :food => [items(:three), items(:one)], :meat => [items(:four)] }, assigns(:items_by_type))
+  end
+
+  test 'should create an order with this users username' do
+    post :create, items: [items(:one).id]
+
+    assert_equal users(:one), assigns(:order).user
+  end
+
+  private
+  def add_user_to_orders
+    orders(:one).user = users(:one)
+    orders(:two).user = users(:one)
+
+    orders(:one).save!
+    orders(:two).save!
   end
 end

@@ -1,5 +1,5 @@
 Feature: Creating orders
-  @javascript
+
   Scenario: Create a valid order
     Given the item "Beef" exists with a price of 5000
     And I sign in with valid credentials

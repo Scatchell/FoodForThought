@@ -16,20 +16,22 @@ And(/^I am signed in$/) do
   click_button "Sign in"
 end
 
-When(/^I am on the create an order page$/) do
+And(/^I am on the order creation page$/) do
   visit '/'
 end
 
-When(/^I select the only available item$/) do
-  check('I want')
+When(/^I select two items on the menu$/) do
+  find(:css, "#items_[value='1']").set(true)
+  find(:css, "#items_[value='2']").set(true)
 end
 
-And(/^I create the order$/) do
+When(/^I create the order$/) do
   click_button('Create Order')
 end
 
-Then(/^I should see a confirmation page showing the "(.*?)" item$/) do |item_name|
-  page.should have_content "Order created for #{@username}"
-  page.should have_content item_name
-  page.should have_content 'Total price for this order: 5,000'
+Then(/^I should see the order I created$/) do
+  page.should have_content 'Order created for Test'
+  page.should have_content 'Rice'
+  page.should have_content 'Beans'
+
 end

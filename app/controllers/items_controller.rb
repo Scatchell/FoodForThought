@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   include ApplicationHelper
-  http_basic_authenticate_with name: "allinall", password: "twcollins"
+  #http_basic_authenticate_with name: "allinall", password: "twcollins"
 
   def new
     @item = Item.new

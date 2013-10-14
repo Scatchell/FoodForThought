@@ -61,13 +61,13 @@ class ItemsControllerTest < ActionController::TestCase
   test 'should list all items ordered by their price descending' do
     get :index
 
-    assert_equal [items(:four), items(:three), items(:one), items(:two)], assigns(:items).to_a
+    assert_equal [ items(:four),items(:five), items(:three), items(:one), items(:two)], assigns(:items).to_a
   end
 
   test 'should get all different possible item types' do
     get :new
 
-    assert_equal ['Food', 'Meat','Extra'].sort, assigns(:possible_item_types).sort
+    assert_equal ['Food', 'Meat', 'Extra'].sort, assigns(:possible_item_types).sort
   end
 
   test 'saving new item type should be saved in correct format' do

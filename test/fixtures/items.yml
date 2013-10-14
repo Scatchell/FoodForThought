@@ -23,3 +23,9 @@ four:
   price: 6000
   item_type: meat
   available: true
+
+five:
+  name: item_five
+  price: 5000
+  item_type: meat
+  available: true

@@ -9,11 +9,16 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    if !items.empty?
-      not_extra_items = items.to_a.select { |item| item.item_type != 'extra' }
-      not_extra_items.to_a.map { |item| item.price }.max + get_extra_price
+    if only_food?
+      3000
     else
-      0
+      not_extra_items = items.to_a.select { |item| item.item_type != 'extra' }
+      if get_meat_items.length >1
+        get_meat_price + get_extra_price
+      else
+        not_extra_item_prices = not_extra_items.to_a.map { |item| item.price }.max
+        not_extra_item_prices + get_extra_price if not_extra_item_prices
+      end
     end
   end
 
@@ -23,13 +28,33 @@ class Order < ActiveRecord::Base
 
   def get_extra_price
     extra_items = items.to_a.select { |item| item.item_type == 'extra' }
-
     extra_items.inject(0) { |total, item| total += item.price }
+  end
+
+  def get_meat_price
+    meat_items = get_meat_items
+    if meat_items.length >1
+      meat_items.inject(0) { |total, item| total +=item.price } - 1000
+    else
+      meat_items.first.price
+    end
+  end
+
+  def get_meat_items
+    items.to_a.select { |item| item.item_type == 'meat' }
+  end
+
+  def only_food?
+    item_types.uniq == ['food']
   end
 
   private
   def item_names
     items.map { |item| item.name }
+  end
+
+  def item_types
+    items.map { |item| item.item_type }
   end
 
 end

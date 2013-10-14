@@ -21,15 +21,15 @@ class Order < ActiveRecord::Base
     item_names.join(' + ')
   end
 
+  def get_extra_price
+    extra_items = items.to_a.select { |item| item.item_type == 'extra' }
+
+    extra_items.inject(0) { |total, item| total += item.price }
+  end
+
   private
   def item_names
     items.map { |item| item.name }
-  end
-
-  def get_extra_price
-    extra_items = items.to_a.select { |item| item.item_type != 'extra' }
-
-    extra_items.inject(0) { |total, item| total += item.price }
   end
 
 end

@@ -10,6 +10,13 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal 5000,order.total_price
   end
 
+  test "order can sum up all its extra items price" do
+    order = orders(:one)
+
+    order.items = [items(:one), items(:two), items(:three)]
+
+    assert_equal 3000,order.get_extra_price
+  end
 
   test 'should print all items in the order' do
     order = orders(:one)

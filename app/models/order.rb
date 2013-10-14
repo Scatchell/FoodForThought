@@ -9,7 +9,12 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    items.to_a.map { |item| item.price }.max
+    if !items.empty?
+      not_extra_items = items.to_a.select { |item| item.item_type != 'extra' }
+      not_extra_items.to_a.map { |item| item.price }.max + get_extra_price
+    else
+      0
+    end
   end
 
   def items_string
@@ -20,4 +25,11 @@ class Order < ActiveRecord::Base
   def item_names
     items.map { |item| item.name }
   end
+
+  def get_extra_price
+    extra_items = items.to_a.select { |item| item.item_type != 'extra' }
+
+    extra_items.inject(0) { |total, item| total += item.price }
+  end
+
 end

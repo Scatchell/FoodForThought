@@ -5,9 +5,9 @@ class OrderTest < ActiveSupport::TestCase
   test "order can sum up all its items into a total price" do
     order = orders(:one)
 
-    order.items = [items(:one), items(:two)]
+    order.items = [items(:one), items(:two), items(:three)]
 
-    assert_equal 2000,order.total_price
+    assert_equal 5000,order.total_price
   end
 
 

@@ -15,7 +15,7 @@ two:
 three:
   name: item_three
   price: 3000
-  item_type: food
+  item_type: extra
   available: true
 
 four:

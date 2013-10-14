@@ -67,7 +67,7 @@ class ItemsControllerTest < ActionController::TestCase
   test 'should get all different possible item types' do
     get :new
 
-    assert_equal ['Food', 'Meat'], assigns(:possible_item_types)
+    assert_equal ['Food', 'Meat','Extra'].sort, assigns(:possible_item_types).sort
   end
 
   test 'saving new item type should be saved in correct format' do

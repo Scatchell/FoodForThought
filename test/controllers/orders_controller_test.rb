@@ -76,7 +76,7 @@ class OrdersControllerTest < ActionController::TestCase
   test 'should get all available items sorted by their item type, and also ordered by their price descending' do
     get :new
 
-    assert_equal({ :food => [items(:three), items(:one)], :meat => [items(:four)] }, assigns(:items_by_type))
+    assert_equal({ :food => [items(:one)], :meat => [items(:four)],:extra => [items(:three)]}, assigns(:items_by_type))
   end
 
   test 'should create an order with this users username' do

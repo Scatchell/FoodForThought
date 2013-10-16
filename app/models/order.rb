@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
       3000
     else
       not_extra_items = items.to_a.select { |item| item.item_type != 'extra' }
-      if get_meat_items.length >1
+      if get_meat_items.length > 1
         get_meat_price + get_extra_price
       else
         not_extra_item_prices = not_extra_items.to_a.map { |item| item.price }.max
@@ -33,10 +33,10 @@ class Order < ActiveRecord::Base
 
   def get_meat_price
     meat_items = get_meat_items
-    if meat_items.length >1
-      meat_items.inject(0) { |total, item| total +=item.price } - 1000
-    else
+    if meat_items.length == 1
       meat_items.first.price
+    else
+      meat_items.inject(0) { |total, item| total +=item.price } - 1000
     end
   end
 

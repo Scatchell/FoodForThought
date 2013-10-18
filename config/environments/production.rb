@@ -79,4 +79,13 @@ FoodForThought::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = {:host => 'http://tw-food-for-thought.herokuapp.com/'}
+
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'gmail.com',
+      :user_name            => 'tw.food.for.thought@gmail.com',
+      :password             => 'twcollins',
+      :authentication       => :plain,
+      :enable_starttls_auto => true  }
 end

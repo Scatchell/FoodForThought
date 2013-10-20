@@ -24,6 +24,24 @@
 </div>
 
 <div class="row">
+
+
+  <div class="col-lg-4">
+    <div class="alert alert-info">
+      Total number of orders for today: <%= @orders.size %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="alert alert-info">
+      Total price of all orders for today: <%= number_with_delimiter(@total_price_of_orders) unless @total_price_of_orders.nil? %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-lg-4">
     <%= button_to 'Delete all orders and start next day', destroy_all_orders_path, method: :delete, data: {confirm: 'Are you sure you want to delete ALL the orders? Only do this if you\'ve already printed the list!!'}, class: 'btn btn-danger' %>
   </div>

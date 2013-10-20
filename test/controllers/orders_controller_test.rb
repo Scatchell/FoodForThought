@@ -85,6 +85,15 @@ class OrdersControllerTest < ActionController::TestCase
     assert_equal users(:one), assigns(:order).user
   end
 
+  test 'should sum up price of each order into total' do
+    orders(:one).items = [items(:one), items(:two)]
+    orders(:two).items = [items(:three), items(:four)]
+
+    get :display_all
+
+    assert_equal 12000, assigns(:total_price_of_orders)
+  end
+
   private
   def add_user_to_orders
     orders(:one).user = users(:one)

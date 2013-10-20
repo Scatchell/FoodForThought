@@ -54,8 +54,8 @@ class OrdersController < ApplicationController
 
   def display_all
     @orders = Order.all
+    @total_price_of_orders = total_price_of_all_orders
   end
-
 
   def destroy_all
     @orders = Order.all
@@ -64,19 +64,24 @@ class OrdersController < ApplicationController
       order.destroy
     end
 
-    reset_all_items_to_unavailable()
+    reset_all_items_to_unavailable
     flash[:notice] ||= []
     flash[:notice] << 'All orders have been removed! Select the items below that you would like to be available on the next day'
 
     redirect_to items_path
   end
 
+  private
   def reset_all_items_to_unavailable
     @items = Item.all
 
     @items.each do |item|
       item.update_attributes(available: false)
     end
+  end
+
+  def total_price_of_all_orders
+    @orders.inject(0) { |total, order| total += order.total_price unless order.items.empty? }
   end
 
 end

@@ -3,18 +3,27 @@
     <%= form_for :item, url: items_path, class: 'form-horizontal' do |f| %>
         <legend>New Item for the menu</legend>
         <div class="form-group">
-          <%= f.label :name, class: 'col-lg-3 control-label' %>
+          <%= f.label :name, class: 'col-lg-4 control-label' %>
           <%= f.text_field :name, class: 'input-sm', placeholder: 'Name of Item' %>
         </div>
 
         <div class="form-group">
-          <%= f.label :price, class: 'col-lg-3 control-label' %>
+          <%= f.label :price, class: 'col-lg-4 control-label' %>
           <%= f.text_field :price, class: 'input-sm', placeholder: 'Price of Item' %>
         </div>
 
-        <div class="form-group">
-          <%= f.label :item_type, 'Type', class: 'col-lg-3 control-label' %>
-          <%= f.select :item_type, @possible_item_types, class: 'input-sm', placeholder: 'Type of Item', include_blank: 'Select one' %>
+        <div class="form-group" id="item_type_dropdown">
+          <%= f.label :item_type, 'Type', {class: 'col-lg-4 control-label'} %>
+          <%= f.select :item_type, @possible_item_types, {include_blank: 'Select Item Type'}, {class: 'input-sm'} %>
+          <%= image_tag('green-plus-sign-md.png', alt: 'Add Item', style: 'width: 20px; height: 20px; margin-left: 10px;', onclick: 'toggleItemEntryMethods()') %>
+        </div>
+
+        <div class="form-group" id="item_type_text_box" style="display: none">
+          <div class="form-group">
+            <a onclick="toggleItemEntryMethods()">Switch back to selecting existing item</a>
+          </div>
+          <%= f.label :item_type, 'New Type', class: 'col-lg-4 control-label' %>
+          <%= f.text_field :item_type, class: 'input-sm', placeholder: 'Add New Item Type Here', disabled: true %>
         </div>
 
         <%= f.submit 'Create Item', class: 'btn btn-success' %>

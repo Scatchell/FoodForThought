@@ -1,11 +1,13 @@
 FoodForThought::Application.routes.draw do
   devise_for :users
-  get "menu/index"
+  get 'menu/index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'orders#new'
+
+  get 'user/emails'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -26,6 +28,7 @@ FoodForThought::Application.routes.draw do
     end
     resources :items
   end
+
   #   resources :products do
   #     member do
   #       get 'short'

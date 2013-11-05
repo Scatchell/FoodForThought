@@ -26,3 +26,16 @@
     <% end %>
   </div>
 </div>
+
+<div class="col-lg-4">
+  <div class="alert alert-info">
+    <div id="current_notification_state">
+      Email notifications currently <%= current_user.notifications ? 'on' : 'off' %>
+    </div>
+    <%= form_for(current_user, url: registration_path(current_user), remote: true, html: {:method => :put}) do |f| %>
+        <%= f.check_box :notifications, hidden: true, checked: current_user.notifications ? false : true %>
+        <div id="response"></div>
+        <%= f.submit 'Turn them ' + (current_user.notifications ? 'off' : 'on') %>
+    <% end %>
+  </div>
+</div>

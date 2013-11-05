@@ -7,6 +7,12 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @items_by_type = Item.where(available: true).order('price DESC').group_by { |e| e.item_type.to_sym }
+
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
+
   end
 
   def show
@@ -18,23 +24,27 @@ class OrdersController < ApplicationController
 
     @order.user = current_user
 
-    if params[:items].nil?
-      flash[:error] ||= []
-      flash[:error] << 'Order not saved - must select at least a single item'
-      redirect_to new_order_path
-    else
-      @items = Item.find(params[:items])
-      @order.items = @items
+    respond_to do |format|
+      format.html do
+        if params[:items].nil?
+          flash[:error] ||= []
+          flash[:error] << 'Order not saved - must select at least a single item'
+          redirect_to new_order_path
+        else
+          @items = Item.find(params[:items])
+          @order.items = @items
 
-      if @order.save
-        session[:auth] = @order.id
-        redirect_to @order
-      else
-        flash[:error] ||= []
-        @order.errors.each do |error, msg|
-          flash[:error] << capitalize_first_letter(error.to_s) + ' ' + msg
+          if @order.save
+            session[:auth] = @order.id
+            redirect_to @order
+          else
+            flash[:error] ||= []
+            @order.errors.each do |error, msg|
+              flash[:error] << capitalize_first_letter(error.to_s) + ' ' + msg
+            end
+            redirect_to new_order_path
+          end
         end
-        redirect_to new_order_path
       end
     end
   end

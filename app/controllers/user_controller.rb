@@ -1,5 +1,5 @@
 class UserController < ApplicationController
   def emails
-    @emails = User.all.collect(&:email)
+    @emails = User.notification_emails
   end
 end

@@ -8,4 +8,10 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true, if: -> { self.username.present? }
 
   has_many :orders
+
+  def self.notification_emails
+    users = self.all.select {|user| user.notifications }
+
+    users.collect(&:email)
+  end
 end

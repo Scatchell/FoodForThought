@@ -7,9 +7,11 @@
 one:
   username: test1
   email: test1@test.com
+  notifications: true
 # column: value
 #
 two:
   username: test2
   email: test2@test.com
+  notifications: false
 #  column: value

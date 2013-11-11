@@ -17,7 +17,11 @@ class Order < ActiveRecord::Base
         get_meat_price + get_extra_price
       else
         not_extra_item_prices = not_extra_items.to_a.map { |item| item.price }.max
-        not_extra_item_prices + get_extra_price if not_extra_item_prices
+        if not_extra_item_prices
+          not_extra_item_prices + get_extra_price
+        else
+          get_extra_price
+        end
       end
     end
   end

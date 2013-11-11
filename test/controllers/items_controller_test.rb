@@ -61,7 +61,7 @@ class ItemsControllerTest < ActionController::TestCase
   test 'should list all items ordered by their price descending' do
     get :index
 
-    assert_equal [ items(:four),items(:five), items(:three), items(:one), items(:two)], assigns(:items).to_a
+    assert_equal [items(:four),items(:five), items(:three), items(:one), items(:two)], assigns(:items).to_a
   end
 
   test 'should get all different possible item types' do

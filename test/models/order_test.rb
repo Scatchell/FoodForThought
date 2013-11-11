@@ -48,6 +48,23 @@ class OrderTest < ActiveSupport::TestCase
     order.items = [items(:one), items(:two)]
 
     assert_equal "#{items(:one).name} + #{items(:two).name}", order.items_string
+  end
 
+  test 'should calculate the price of only extra items' do
+    new_extra_item = Item.new(name: 'item_six', price: 2000, item_type: 'extra', available: true)
+
+    new_extra_item.save!
+
+    order = orders(:one)
+
+    order.items = [items(:three), new_extra_item]
+
+    assert_equal 5000, order.total_price
+  end
+
+  test 'should calculate the price of an order with no items' do
+    order = orders(:one)
+
+    assert_equal 0, order.total_price
   end
 end

@@ -9,6 +9,12 @@ FoodForThought::Application.routes.draw do
 
   get 'user/emails'
 
+  get 'information/orders' => 'information#orders'
+
+  get 'information/items' => 'information#items'
+
+  get 'information/users' => 'information#users'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

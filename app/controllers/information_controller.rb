@@ -18,8 +18,12 @@ class InformationController < ApplicationController
   def orders
     @orders = OrderHistory.all
 
+    orders_json = @orders.as_json.each do |order_json|
+      order_json['items'] = OrderHistory.where(id: order_json['id']).first.items.to_a
+    end
+
     respond_to do |format|
-      format.js {render :json => @orders.as_json}
+      format.js {render :json => orders_json}
     end
   end
 end

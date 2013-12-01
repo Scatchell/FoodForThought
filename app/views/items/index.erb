@@ -5,7 +5,7 @@
     <h1>Administrator list of items:</h1>
 
     <%= form_tag mark_availability_items_path, method: :put do %>
-        <%= render :partial => 'items_list', :locals => {:items => @items, :show_availability => AvailabilityTypeHelper::AVAILABILITY} %>
+        <%= render :partial => 'items_list_by_type', :locals => {items_by_type: @items_by_type, show_availability: AvailabilityTypeHelper::AVAILABILITY} %>
         <%= submit_tag 'Update selected', class: 'btn btn-primary' %>
     <% end %>
   </div>

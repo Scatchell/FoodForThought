@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label class="control-label" for="item-list"><h3>Item List:</h3></label>
+  <% items_by_type.each do |item_type, item_type_list| %>
+      <div class="form-group">
+        <h4> <%= capitalize_first_letter item_type %>:</h4>
+        <%= render :partial => 'items/items_list', :locals => {items: item_type_list, show_availability: show_availability} %>
+      </div>
+  <% end %>
+</div>

@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.order('price DESC')
+    @items_by_type = Item.all.order('price DESC').group_by { |e| e.item_type.to_sym }
   end
 
   def mark_availability

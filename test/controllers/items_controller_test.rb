@@ -58,10 +58,10 @@ class ItemsControllerTest < ActionController::TestCase
     assert_redirected_to items_path
   end
 
-  test 'should list all items ordered by their price descending' do
+  test 'should list all items ordered by their price descending and grouped by their category' do
     get :index
 
-    assert_equal [items(:four),items(:five), items(:three), items(:one), items(:two)], assigns(:items).to_a
+    assert_equal({ meat: [items(:four),items(:five)], extra: [items(:three)], food: [items(:one), items(:two)] }, assigns(:items_by_type))
   end
 
   test 'should get all different possible item types' do

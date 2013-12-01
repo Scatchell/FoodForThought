@@ -12,18 +12,25 @@ class Order < ActiveRecord::Base
     if only_food?
       3000
     else
-      not_extra_items = items.to_a.select { |item| item.item_type != 'extra' }
-      if get_meat_items.length > 1
+      if more_than_one_meat_item?
         get_meat_price + get_extra_price
       else
-        not_extra_item_prices = not_extra_items.to_a.map { |item| item.price }.max
-        if not_extra_item_prices
-          not_extra_item_prices + get_extra_price
+        map_non_extra_item_price = only_non_extra_items.to_a.map { |item| item.price }.max
+        if map_non_extra_item_price
+          map_non_extra_item_price + get_extra_price
         else
           get_extra_price
         end
       end
     end
+  end
+
+  def more_than_one_meat_item?
+    all_meat_items.length > 1
+  end
+
+  def only_non_extra_items
+    items.to_a.select { |item| item.item_type != 'extra' }
   end
 
   def items_string
@@ -36,7 +43,7 @@ class Order < ActiveRecord::Base
   end
 
   def get_meat_price
-    meat_items = get_meat_items
+    meat_items = all_meat_items
     if meat_items.length == 1
       meat_items.first.price
     else
@@ -44,7 +51,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def get_meat_items
+  def all_meat_items
     items.to_a.select { |item| item.item_type == 'meat' }
   end
 

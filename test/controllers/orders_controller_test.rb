@@ -94,6 +94,18 @@ class OrdersControllerTest < ActionController::TestCase
     assert_equal 12000, assigns(:total_price_of_orders)
   end
 
+  test 'should redirect to order show page when a users order already exists' do
+    sign_in users(:two)
+
+    post :create, items: [items(:one).id, items(:two).id]
+
+    created_order_id = assigns(:order).id
+
+    get :new
+
+    assert_redirected_to order_path(created_order_id)
+  end
+
   private
   def add_user_to_orders
     orders(:one).user = users(:one)

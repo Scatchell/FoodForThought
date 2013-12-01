@@ -5,7 +5,14 @@ class OrdersController < ApplicationController
   #http_basic_authenticate_with name: "allinall", password: "twcollins", only: [:display_all, :destroy_all]
 
   def new
-    @order = Order.new
+    @order = Order.where(user_id: current_user.id).first
+
+    if @order
+      redirect_to @order
+    else
+      @order = Order.new
+    end
+
     @items_by_type = Item.where(available: true).order('price DESC').group_by { |e| e.item_type.to_sym }
 
     respond_to do |format|

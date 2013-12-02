@@ -1,3 +1,4 @@
+config/*sublime**
 .idea/
 *.rbc
 *.sassc

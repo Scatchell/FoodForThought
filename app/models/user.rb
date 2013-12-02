@@ -10,8 +10,17 @@ class User < ActiveRecord::Base
   has_many :orders
 
   def self.notification_emails
-    users = self.all.select {|user| user.notifications }
+    users = users_to_notify
 
     users.collect(&:email)
+  end
+
+  def self.users_without_current_orders
+    users_to_notify.select {|user| user.orders.empty?}
+  end
+
+  private
+  def self.users_to_notify
+    self.where(notifications: true)
   end
 end

@@ -15,3 +15,8 @@ two:
   email: test2@test.com
   notifications: false
 #  column: value
+
+three:
+  username: test3
+  email: test3@test.com
+  notifications: true

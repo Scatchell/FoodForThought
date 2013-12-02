@@ -9,4 +9,19 @@ namespace :fft do
     #todo check to see if successful, only display following message if it worked
     #system("echo 'User food_for_thought created on postgres db@localhost:4000'")
   end
+
+  task :reminder_emails => :environment do
+    User.users_without_current_orders.each do |user|
+      user_email = user.email
+      UserMailer.reminder_email(user_email).deliver
+      puts "Time almost up mail sent to: #{user_email}"
+    end
+  end
+
+  task :order_up_notification => :environment do
+    User.notification_emails.each do |user_email|
+      UserMailer.order_up_email(user_email).deliver
+      puts "Order available mail sent to: #{user_email}"
+    end
+  end
 end

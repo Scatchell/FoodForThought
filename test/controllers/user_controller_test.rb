@@ -13,7 +13,7 @@ class UserControllerTest < ActionController::TestCase
   test 'should get user_emails' do
     get :emails
     assert_response :success
-    assert_equal(assigns(:emails), [users(:one).email])
+    assert_equal(assigns(:emails), [users(:one).email, users(:three).email])
   end
 
 end

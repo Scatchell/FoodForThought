@@ -28,5 +28,14 @@ FoodForThought::Application.configure do
   config.assets.debug = true
 
   #todo change for production
-  config.action_mailer.default_url_options = {:host => 'localhost:3000'}
+  config.action_mailer.default_url_options = {:host => 'http://localhost:3000'}
+
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'gmail.com',
+      :user_name            => 'tw.food.for.thought@gmail.com',
+      :password             => 'twcollins',
+      :authentication       => :plain,
+      :enable_starttls_auto => true  }
 end

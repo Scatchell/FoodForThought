@@ -17,11 +17,4 @@ namespace :fft do
       puts "Time almost up mail sent to: #{user_email}"
     end
   end
-
-  task :order_up_notification => :environment do
-    User.notification_emails.each do |user_email|
-      UserMailer.order_up_email(user_email).deliver
-      puts "Order available mail sent to: #{user_email}"
-    end
-  end
 end

@@ -10,10 +10,10 @@ class UserControllerTest < ActionController::TestCase
     http_login
   end
 
-  test 'should get user_emails' do
+  test 'should redirect to root page after sending emails' do
     get :emails
-    assert_response :success
-    assert_equal(assigns(:emails), [users(:one).email, users(:three).email])
+    assert_not_nil flash[:notice]
+    assert_redirected_to items_path
   end
 
 end

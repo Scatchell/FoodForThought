@@ -59,6 +59,14 @@ class Order < ActiveRecord::Base
     item_types.uniq == ['food']
   end
 
+  def self.destroy_all
+    @orders = self.all
+    @orders.each do |order|
+      OrderHistory.create!({user: order.user, items: order.items})
+      order.destroy
+    end
+  end
+
   private
   def item_names
     items.map { |item| item.name }

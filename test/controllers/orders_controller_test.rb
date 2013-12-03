@@ -44,15 +44,19 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_equal Order.count, 0
 
+    assert_redirected_to items_path
+
+    assert_not_nil flash[:notice]
+  end
+
+  test 'should mark all items as unavailable when deleting all orders' do
+    delete :destroy_all
+
     items = Item.all
 
     items.each do |item|
       assert_equal false, item.available
     end
-
-    assert_redirected_to items_path
-
-    assert_not_nil flash[:notice]
   end
 
   test 'should save all orders in order history table when admin deletes all orders' do

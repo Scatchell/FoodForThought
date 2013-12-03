@@ -17,4 +17,8 @@ namespace :fft do
       puts "Time almost up mail sent to: #{user_email}"
     end
   end
+
+  task :delete_all_orders => :environment do
+    Order.destroy_all
+  end
 end

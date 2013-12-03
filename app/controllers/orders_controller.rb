@@ -75,13 +75,9 @@ class OrdersController < ApplicationController
   end
 
   def destroy_all
-    @orders = Order.all
-    @orders.each do |order|
-      OrderHistory.create!({user: order.user, items: order.items})
-      order.destroy
-    end
+    Order.destroy_all
 
-    reset_all_items_to_unavailable
+    Item.reset_all_to_unavailable
     flash[:notice] ||= []
     flash[:notice] << 'All orders have been removed! Select the items below that you would like to be available on the next day'
 
@@ -89,13 +85,6 @@ class OrdersController < ApplicationController
   end
 
   private
-  def reset_all_items_to_unavailable
-    @items = Item.all
-
-    @items.each do |item|
-      item.update_attributes(available: false)
-    end
-  end
 
   def total_price_of_all_orders
     @orders.inject(0) { |total, order| total += order.total_price unless order.items.empty? }

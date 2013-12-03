@@ -67,4 +67,12 @@ class OrderTest < ActiveSupport::TestCase
 
     assert_equal 0, order.total_price
   end
+
+  test 'should save all orders to order history when destroyed' do
+    orders(:one).items = [items(:one), items(:two)]
+
+    Order.destroy_all
+
+    assert_includes OrderHistory.all.collect(&:items), [items(:one), items(:two)]
+  end
 end

@@ -13,4 +13,12 @@ class Item < ActiveRecord::Base
   def downcase_item_type!
     item_type.downcase! unless item_type.nil?
   end
+
+  def self.reset_all_to_unavailable
+    @items = Item.all
+
+    @items.each do |item|
+      item.update_attributes(available: false)
+    end
+  end
 end

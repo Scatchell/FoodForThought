@@ -20,5 +20,6 @@ namespace :fft do
 
   task :delete_all_orders => :environment do
     Order.destroy_all
+    Item.reset_all_to_unavailable
   end
 end

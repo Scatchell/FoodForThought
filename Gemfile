@@ -39,6 +39,7 @@ end
 
 group :test do
   gem 'rspec'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'capybara-webkit'
   gem 'headless'

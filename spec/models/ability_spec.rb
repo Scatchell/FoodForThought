@@ -29,6 +29,12 @@ describe 'User' do
 			it{ should be_able_to(:show, Order) }
 			it{ should_not be_able_to(:index, Order)}
 			it{ should_not be_able_to(:destroy_all, Order)}
+
+			it{ should_not be_able_to(:mark_availability, Item)}
+			it{ should_not be_able_to(:create, Item)}
+			it{ should_not be_able_to(:destroy, Item)}
+			it{ should_not be_able_to(:show, Item)}
+			it{ should_not be_able_to(:index, Item)}
 		end
 	end
 end

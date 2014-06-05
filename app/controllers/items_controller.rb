@@ -33,6 +33,11 @@ class ItemsController < ApplicationController
 
   def index
     @items_by_type = Item.all.order('price DESC').group_by { |e| e.item_type.to_sym }
+    respond_to do |format|
+      format.json {render :json => @items_by_type}
+      format.html
+    end
+
   end
 
   def mark_availability

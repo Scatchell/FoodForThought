@@ -87,7 +87,7 @@ class OrdersController < ApplicationController
   private
 
   def total_price_of_all_orders
-    @orders.inject(0) { |total, order| total += order.total_price unless order.items.empty? }
+    @orders.inject(0) { |total, order| total = total + order.total_price unless order.items.empty? }
   end
 
 end

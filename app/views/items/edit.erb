@@ -1,0 +1,7 @@
+<h1>Edit Item</h1>
+
+<%= form_for @item, url: {action: "update"}, html: {class: "form"} do |f| %>
+  Name: <%= f.text_field :name %>
+  Price: <%= f.text_field :price %>
+  <%= f.submit "Edit" %>
+<% end %>

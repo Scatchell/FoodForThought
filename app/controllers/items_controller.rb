@@ -40,6 +40,20 @@ class ItemsController < ApplicationController
 
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to root_url, notice: "Item created successfully."
+    else
+      render :edit
+    end
+  end
+
+
   def mark_availability
     items = Item.all
 
@@ -70,4 +84,11 @@ class ItemsController < ApplicationController
 
     redirect_to items_path
   end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :price, :id)
+  end
+
 end
